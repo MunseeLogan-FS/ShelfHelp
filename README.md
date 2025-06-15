@@ -8,6 +8,7 @@
 ### Changelog starting June 11, 2025.
 
 - 06/11/25 Moved app from create-react-app to Vite
+- 06/16/25 Fixed react-slick issue and wishlsit bug.
 
 #### About
 
