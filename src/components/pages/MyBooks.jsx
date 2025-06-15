@@ -71,7 +71,7 @@ function MyBooks() {
         My Favorite Books
       </Heading>
       <div style={styles.featuredContainer}>
-        {favoriteBooks.length > 3 ? (
+        {favoriteBooks.length > 2 ? (
           <Slider {...settings}>
             {favoriteBooks.map((book) => (
               <div key={book.key} style={styles.slide}>
@@ -91,7 +91,7 @@ function MyBooks() {
               </div>
             ))}
           </Slider>
-        ) : favoriteBooks.length <= 3 && favoriteBooks.length > 0 ? (
+        ) : favoriteBooks.length <= 2 && favoriteBooks.length > 0 ? (
           <div style={styles.nonSlide}>
             {favoriteBooks.map((book) => (
               <div key={book.key} style={styles.slide}>
@@ -121,7 +121,7 @@ function MyBooks() {
         My Wishlist
       </Heading>
       <div style={styles.featuredContainer}>
-        {wishList.length > 3 ? (
+        {wishList.length > 2 ? (
           <Slider {...settings}>
             {wishList.map((book) => (
               <div key={book.key} style={styles.slide}>
@@ -141,24 +141,27 @@ function MyBooks() {
               </div>
             ))}
           </Slider>
+        ) : wishList.length <= 2 && wishList.length > 0 ? (
+          <div style={styles.nonSlide}>
+            {wishList.map((book) => (
+              <div key={book.key} style={styles.slide}>
+                {(book.cover_id || book.cover_i) && (
+                  <img
+                    src={`https://covers.openlibrary.org/b/id/${
+                      book.cover_id || book.cover_i
+                    }-L.jpg`}
+                    alt={book.title}
+                    style={styles.featuredImage}
+                    onClick={() => {
+                      setSelectedBook(book);
+                      setIsWishDialogOpen(true);
+                    }}
+                  />
+                )}
+              </div>
+            ))}
+          </div>
         ) : (
-          //  : wishList.length <= 3 && wishList.length > 0 ? (
-          //   <div style={styles.nonSlide}>
-          //     {wishList.map((book) => (
-          //       <div key={book.key} style={styles.slide}>
-          //         <img
-          //           src={`https://covers.openlibrary.org/b/id/${book.cover_i}-L.jpg`}
-          //           alt={book.title}
-          //           style={styles.featuredImage}
-          //           onClick={() => {
-          //             setSelectedBook(book);
-          //             setIsWishDialogOpen(true);
-          //           }}
-          //         />
-          //       </div>
-          //     ))}
-          //   </div>
-          // )
           <Text style={{ textAlign: "center" }}>
             No books saved to your Wishlist yet.
           </Text>
