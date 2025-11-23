@@ -8,10 +8,11 @@
 ### Changelog starting June 11, 2025.
 
 - 06/11/25 Moved app from create-react-app to Vite
+- 06/16/25 Fixed react-slick issue and wishlsit bug.
 
 - 11/23/25 Fixed bug with react-slick not displaying properly.
 - 11/23/25 Fixed how searched books are displayed to be more user friendly.
 
 #### About
 
-- This project has been fun to develop and work with. I have made some mistakes along the way but I am slowly trying to clean them up along the way. I work a full time job and am a full time student. This leaves little room for my passion projects. I look forward to keep improving this app in the future.
+- This project has been fun to develop and work with. I have made some mistakes along the way but I am slowly trying to clean them up. I work a full time job and am a full time student. This leaves little room for my passion projects. I look forward to keep improving this app in the future.

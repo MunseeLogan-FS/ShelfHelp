@@ -72,7 +72,7 @@ function MyBooks() {
         My Favorite Books
       </Heading>
       <div style={styles.featuredContainer}>
-        {favoriteBooks.length > 3 ? (
+        {favoriteBooks.length > 2 ? (
           <Slider {...settings}>
             {favoriteBooks.map((book) => {
               const coverId = book.cover_id || book.cover_i;
@@ -98,7 +98,7 @@ function MyBooks() {
               );
             })}
           </Slider>
-        ) : favoriteBooks.length <= 3 && favoriteBooks.length > 0 ? (
+        ) : favoriteBooks.length <= 2 && favoriteBooks.length > 0 ? (
           <div style={styles.nonSlide}>
             {favoriteBooks.map((book) => {
               const coverId = book.cover_id || book.cover_i;
@@ -134,7 +134,7 @@ function MyBooks() {
         My Wishlist
       </Heading>
       <div style={styles.featuredContainer}>
-        {wishList.length > 3 ? (
+        {wishList.length > 2 ? (
           <Slider {...settings}>
             {wishList.map((book) => {
               const coverId = book.cover_id || book.cover_i;
@@ -160,6 +160,7 @@ function MyBooks() {
               );
             })}
           </Slider>
+<<<<<<< HEAD
         ) : wishList.length <= 3 && wishList.length > 0 ? (
           <div style={styles.nonSlide}>
             {wishList.map((book) => {
@@ -172,12 +173,24 @@ function MyBooks() {
                         ? `https://covers.openlibrary.org/b/id/${coverId}-L.jpg`
                         : defaultBook
                     }
+=======
+        ) : wishList.length <= 2 && wishList.length > 0 ? (
+          <div style={styles.nonSlide}>
+            {wishList.map((book) => (
+              <div key={book.key} style={styles.slide}>
+                {(book.cover_id || book.cover_i) && (
+                  <img
+                    src={`https://covers.openlibrary.org/b/id/${
+                      book.cover_id || book.cover_i
+                    }-L.jpg`}
+>>>>>>> 6503d30669256e2157e91b2242a5499267cdd3fc
                     alt={book.title}
                     style={styles.featuredImage}
                     onClick={() => {
                       setSelectedBook(book);
                       setIsWishDialogOpen(true);
                     }}
+<<<<<<< HEAD
                     onError={(e) => {
                       e.target.src = defaultBook;
                     }}
@@ -185,6 +198,12 @@ function MyBooks() {
                 </div>
               );
             })}
+=======
+                  />
+                )}
+              </div>
+            ))}
+>>>>>>> 6503d30669256e2157e91b2242a5499267cdd3fc
           </div>
         ) : (
           <Text style={{ textAlign: "center" }}>
