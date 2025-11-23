@@ -3,6 +3,7 @@ import { Text, Heading } from "@chakra-ui/react";
 import FavoriteModal from "../FavoriteModal";
 import WishModal from "../WishModal";
 import Slider from "react-slick";
+import defaultBook from "../../assets/defaultBook.png";
 
 function MyBooks() {
   const [favoriteBooks, setFavoriteBooks] = useState([]);
@@ -73,43 +74,55 @@ function MyBooks() {
       <div style={styles.featuredContainer}>
         {favoriteBooks.length > 3 ? (
           <Slider {...settings}>
-            {favoriteBooks.map((book) => (
-              <div key={book.key} style={styles.slide}>
-                {(book.cover_id || book.cover_i) && (
+            {favoriteBooks.map((book) => {
+              const coverId = book.cover_id || book.cover_i;
+              return (
+                <div key={book.key} style={styles.slide}>
                   <img
-                    src={`https://covers.openlibrary.org/b/id/${
-                      book.cover_id || book.cover_i
-                    }-L.jpg`}
+                    src={
+                      coverId
+                        ? `https://covers.openlibrary.org/b/id/${coverId}-L.jpg`
+                        : defaultBook
+                    }
                     alt={book.title}
                     style={styles.featuredImage}
                     onClick={() => {
                       setSelectedBook(book);
                       setIsDialogOpen(true);
                     }}
+                    onError={(e) => {
+                      e.target.src = defaultBook;
+                    }}
                   />
-                )}
-              </div>
-            ))}
+                </div>
+              );
+            })}
           </Slider>
         ) : favoriteBooks.length <= 3 && favoriteBooks.length > 0 ? (
           <div style={styles.nonSlide}>
-            {favoriteBooks.map((book) => (
-              <div key={book.key} style={styles.slide}>
-                {(book.cover_id || book.cover_i) && (
+            {favoriteBooks.map((book) => {
+              const coverId = book.cover_id || book.cover_i;
+              return (
+                <div key={book.key} style={styles.slide}>
                   <img
-                    src={`https://covers.openlibrary.org/b/id/${
-                      book.cover_id || book.cover_i
-                    }-L.jpg`}
+                    src={
+                      coverId
+                        ? `https://covers.openlibrary.org/b/id/${coverId}-L.jpg`
+                        : defaultBook
+                    }
                     alt={book.title}
                     style={styles.featuredImage}
                     onClick={() => {
                       setSelectedBook(book);
                       setIsDialogOpen(true);
                     }}
+                    onError={(e) => {
+                      e.target.src = defaultBook;
+                    }}
                   />
-                )}
-              </div>
-            ))}
+                </div>
+              );
+            })}
           </div>
         ) : (
           <Text style={{ textAlign: "center" }}>
@@ -123,42 +136,57 @@ function MyBooks() {
       <div style={styles.featuredContainer}>
         {wishList.length > 3 ? (
           <Slider {...settings}>
-            {wishList.map((book) => (
-              <div key={book.key} style={styles.slide}>
-                {(book.cover_id || book.cover_i) && (
+            {wishList.map((book) => {
+              const coverId = book.cover_id || book.cover_i;
+              return (
+                <div key={book.key} style={styles.slide}>
                   <img
-                    src={`https://covers.openlibrary.org/b/id/${
-                      book.cover_id || book.cover_i
-                    }-L.jpg`}
+                    src={
+                      coverId
+                        ? `https://covers.openlibrary.org/b/id/${coverId}-L.jpg`
+                        : defaultBook
+                    }
                     alt={book.title}
                     style={styles.featuredImage}
                     onClick={() => {
                       setSelectedBook(book);
                       setIsWishDialogOpen(true);
                     }}
+                    onError={(e) => {
+                      e.target.src = defaultBook;
+                    }}
                   />
-                )}
-              </div>
-            ))}
+                </div>
+              );
+            })}
           </Slider>
+        ) : wishList.length <= 3 && wishList.length > 0 ? (
+          <div style={styles.nonSlide}>
+            {wishList.map((book) => {
+              const coverId = book.cover_id || book.cover_i;
+              return (
+                <div key={book.key} style={styles.slide}>
+                  <img
+                    src={
+                      coverId
+                        ? `https://covers.openlibrary.org/b/id/${coverId}-L.jpg`
+                        : defaultBook
+                    }
+                    alt={book.title}
+                    style={styles.featuredImage}
+                    onClick={() => {
+                      setSelectedBook(book);
+                      setIsWishDialogOpen(true);
+                    }}
+                    onError={(e) => {
+                      e.target.src = defaultBook;
+                    }}
+                  />
+                </div>
+              );
+            })}
+          </div>
         ) : (
-          //  : wishList.length <= 3 && wishList.length > 0 ? (
-          //   <div style={styles.nonSlide}>
-          //     {wishList.map((book) => (
-          //       <div key={book.key} style={styles.slide}>
-          //         <img
-          //           src={`https://covers.openlibrary.org/b/id/${book.cover_i}-L.jpg`}
-          //           alt={book.title}
-          //           style={styles.featuredImage}
-          //           onClick={() => {
-          //             setSelectedBook(book);
-          //             setIsWishDialogOpen(true);
-          //           }}
-          //         />
-          //       </div>
-          //     ))}
-          //   </div>
-          // )
           <Text style={{ textAlign: "center" }}>
             No books saved to your Wishlist yet.
           </Text>
@@ -197,7 +225,7 @@ const styles = {
     fontWeight: "bold",
   },
   featuredContainer: {
-    width: "95%",
+    width: "85%",
     marginBottom: "32px",
     paddingBottom: "32px",
     borderBottom: "1px solid #fff",
